@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Debounce by JES</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h1>Debounce</h1>
+        <button>Alertar</button>
+    </body>
+    <script>
+        //let timeoutId;
+        function alertar(nombre, apellido) { // Esta función crea un 'timeout' y este le devuelve un 'callback'
+            /*if(timeoutId) {
+                clearTimeout(timeoutId);
+            }*/
+            alert(`Hola ${nombre} ${apellido}`)
+        }
+
+        function debounce(func) { // Transformará cualquier función que le pasemos a una función de tipo 'debounce'
+            let timeoutId; // Variable que almacena el id del último timeout que se ejecuta
+            return function () {
+                if(timeoutId) { // Si existe un timeoutId
+                    clearTimeout(timeoutId); // Cancela el 'timeout' con el id que le pasamos
+                }
+                const context = this;
+                const args = arguments; // Cada función siempre tiene acceso a una variable 'arguments' la cual contiene todos los argumentos que se le pasa a una función
+                timeoutId = setTimeout(() => {
+                    func.apply(context, args)
+                }, 1000)
+            }
+        }
+
+        const alertarDebounced = debounce(alertar)
+
+        document.querySelector('button')
+        .addEventListener('click', () => {
+            alertarDebounced('javi', 'extremera')
+        })
+    </script>
+</html>
+
+<!-- <html>
+    <head>
+        <title>Debounce by JES</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h1>Debounce</h1>
+        <button>Alertar</button>
+    </body>
+    <script>
+        function alertar(nombre, apellido) {
+            
+            timeoutId = setTimeout(() => {
+                alert(`Hola ${nombre} ${apellido}`)
+            }, 1000)
+        }
+        
+        function debounce(func) {
+            let timeoutId;
+            return function() {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+            }
+        }
+
+        document.querySelector('button')
+        .addEventListener('click', () => {
+            alertar('javi', 'extremera')
+        })
+    </script>
+</html> -->
