@@ -17,8 +17,8 @@ export const throttle: throttleFunction = (func, delay) => {
         if (!lastInvokeTime || elapsedTime >= delay) { // Si la función no se ha invocado antes o ha pasado el tiempo mínimo 'delay' desde la útlima invocación
             func(); // Se ejecuta la función inmediatamente
             lastInvokeTime = now;
-        } else { //Si la función se ha invocado
-            if (timeoutId) { // Se cancela la ejecución pendiente si existe
+        } else {
+            if (timeoutId) { // Si hay una ejecución pendiente, la cancelamos para evitar múltiples ejecuciones
                 clearTimeout(timeoutId);
             }
             timeoutId = setTimeout(() => { // Se establece un nuevo temporizador para ejecutar la función después del tiempo restante para cumplir con el retraso

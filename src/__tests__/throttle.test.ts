@@ -45,22 +45,22 @@ describe('throttle function', () => {
 
   // it('should execute the function multiple times if calls are separated by more than the delay', () => {
   //   const mockFunction = jest.fn();
-  //   const throttledFunction = throttle(mockFunction, 1000);
+  //   const throttledFunction = throttle(mockFunction, 100);
 
   //   //Primera llamada a la función
   //   throttledFunction();
 
   //   //Llamada después de 50ms (menos del delay)
-  //   setTimeout(() => throttledFunction(), 500);
+  //   setTimeout(() => throttledFunction(), 50);
   //   //Llamada después de 150ms (más del delay)
-  //   setTimeout(() => throttledFunction(), 1500);
+  //   setTimeout(() => throttledFunction(), 150);
   //   //Llamada después de 250ms (más del delay)
-  //   setTimeout(() => throttledFunction(), 2500);
+  //   setTimeout(() => throttledFunction(), 250);
   //   //Llamada después de 350ms (más del delay)
-  //   setTimeout(() => throttledFunction(), 3500);
+  //   setTimeout(() => throttledFunction(), 350);
 
   //   // Llamada después de que haya pasado el retraso
-  //   jest.advanceTimersByTime(1000);
+  //   jest.runOnlyPendingTimers();
 
   //   // Esperamos que la función se haya ejecutado 4 veces (Primera llamada + tres llamdas que se llaman después de ms>delay)
   //   expect(mockFunction).toHaveBeenCalledTimes(4);
@@ -68,38 +68,17 @@ describe('throttle function', () => {
 
   // it('should execute the function at least once if calls are closely spaced within the delay', () => {
   //   const mockFunction = jest.fn();
-  //   const throttledFunction = throttle(mockFunction, 1000);
+  //   const throttledFunction = throttle(mockFunction, 100);
 
   //   //Primera llamada a la función
   //   throttledFunction();
 
-  //   setTimeout(() => throttledFunction(), 500);
-  //   setTimeout(() => throttledFunction(), 800);
-  //   setTimeout(() => throttledFunction(), 1200);
+  //   //Llamada después de 50ms (menos del delay)
+  //   setTimeout(() => throttledFunction(), 50);
+  //   //Llamada después de 80ms (menos del delay)
+  //   setTimeout(() => throttledFunction(), 80);
 
-  //   jest.advanceTimersByTime(1000);
-  //   console.log(`4. Núm. veces llamada función throttled: ` + mockFunction.mock.calls.length);
   //   // Esperamos que la función se haya ejecutado al menos una vez
   //   expect(mockFunction).toHaveBeenCalledTimes(1);
   // });
 });
-
-
-/* Test limitar la frecuencia de ejecuciones
-// Importamos la función 'throttle' desde un archivo llamado 'throttle.ts'
-import { throttle } from '../throttle';
-
-test('throttle should limit the execution frequency', () => {
-  // Arrange
-  const callback = jest.fn();
-  const throttledFunction = throttle(callback, 100);
-
-  // Act
-  throttledFunction();
-  throttledFunction();
-  throttledFunction();
-
-  // Assert
-  expect(callback).toHaveBeenCalledTimes(1);
-});
-*/
